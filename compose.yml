@@ -1,8 +1,13 @@
 version: "3.8"
 
+include:
+  - ./docker/common.yml
+
 services:
   producer-micro:
-    build: ../microservices/producer
+    build:
+      context: ./microservices
+      dockerfile: producer/Dockerfile
     image: producer-micro:latest
     hostname: producer-micro
     container_name: producer-micro
