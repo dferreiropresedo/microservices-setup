@@ -8,7 +8,9 @@ Thus, it basically replicates the same structure followed in this course by I ha
 In order to make all this work, it is only needed to go to the `docker` folder and execute the following
 command:
 
-> docker-compose up -d --build
+```
+docker-compose up -d --build
+```
 
 > [!NOTE]
 > If any more information is needed, you can check the specific docker [README](docker/README.md)

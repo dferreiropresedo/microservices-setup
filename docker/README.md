@@ -8,7 +8,9 @@ explained in the next sections.
 
 To make it work it is as simple as executing the next command:
 
-> docker-compose up -d --build
+```
+docker-compose up -d --build
+```
 
 as it will build the corresponding images of the microservices as well.
 
