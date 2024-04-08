@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  producer-micro:
+    build: ../microservices/producer
+    image: producer-micro:latest
+    hostname: producer-micro
+    container_name: producer-micro
+    networks:
+      - learning
