@@ -16,4 +16,9 @@ public class HelloWorldController {
     return ResponseEntity.ok("Hello world!");
   }
 
+  @GetMapping("/secured/hello-world")
+  public ResponseEntity<String> securedHelloWorld() {
+    return ResponseEntity.ok("this hello world is secured");
+  }
+
 }

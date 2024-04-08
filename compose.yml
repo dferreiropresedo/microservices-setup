@@ -2,6 +2,7 @@ version: "3.8"
 
 include:
   - ./docker/common.yml
+  - ./docker/keycloak.yml
 
 services:
   producer-micro:
