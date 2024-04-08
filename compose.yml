@@ -11,5 +11,13 @@ services:
     image: producer-micro:latest
     hostname: producer-micro
     container_name: producer-micro
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/producer/actuator/health | grep UP || exit 1"
+      interval: 2s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
     networks:
       - learning

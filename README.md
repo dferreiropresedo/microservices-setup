@@ -18,3 +18,19 @@ docker compose up -d --build
 > The first execution may take a while as it needs to download all the dependencies. If further
 > information is needed, you can check the specific docker [README](docker/README.md)
 
+## Cleaning up
+
+In case that you want to clean up all the resources created to generate this repository, first
+execute
+the next command in the same folder as the previous one:
+
+```
+docker compose down
+```
+
+Lastly, in order to liberate all the reserved space in disk to create the docker components, execute
+the next command to cleanse every image in your filesystem:
+
+```
+docker system prune -a
+```
