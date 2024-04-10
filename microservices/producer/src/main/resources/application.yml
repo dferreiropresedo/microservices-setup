@@ -7,5 +7,7 @@ spring:
   security:
     oauth2:
       resourceserver:
-        jwt:
-          jwk-set-uri: http://localhost:9080/realms/microservices_realm/protocol/openid-connect/certs
+        opaque-token:
+          introspection-uri: http://localhost:9080/realms/microservices_realm/protocol/openid-connect/token/introspect
+          client-id: microservice-client
+          client-secret: vMYyc76blsngzvYcu38LmE42giNs2ZJs

@@ -14,13 +14,16 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain enableOauth(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.authorizeHttpRequests(auth ->
-        auth.requestMatchers(new AntPathRequestMatcher("/hello-world"))
-            .permitAll()
-            .anyRequest()
-            .authenticated()
-    );
-    httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+    httpSecurity
+        .authorizeHttpRequests(auth ->
+            auth.requestMatchers(new AntPathRequestMatcher("/actuator/*"))
+                .permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/hello-world"))
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+        );
+    httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.opaqueToken(Customizer.withDefaults()));
     return httpSecurity.build();
   }
 
