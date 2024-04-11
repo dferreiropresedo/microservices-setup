@@ -14,9 +14,9 @@ directory of the project:
 docker compose up -d --build
 ```
 
-> [!NOTE]
-> The first execution may take a while as it needs to download all the dependencies. If further
-> information is needed, you can check the specific docker [README](docker/README.md)
+> [!IMPORTANT]
+> Since there are a few secrets to be configured previously to boot up the system, please check out
+> the [README.md](docker/README.md) file to get to know which one are needed.
 
 ## Cleaning up
 
