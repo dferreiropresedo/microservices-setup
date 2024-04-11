@@ -20,5 +20,10 @@ services:
       timeout: 3s
       retries: 5
       start_period: 3s
+    environment:
+      - DEV_OAUTH_MICROSERVICE-CLIENT=/run/secrets/dev_oauth_microservice_client_secret
+      - MICRO-PRODUCER_KEYCLOAK_HOST=keycloak:8080
+    secrets:
+      - dev_oauth_microservice_client_secret
     networks:
       - learning

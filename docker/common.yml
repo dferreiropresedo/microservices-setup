@@ -2,3 +2,7 @@ version: "3.8"
 
 networks:
   learning: { }
+
+secrets:
+  dev_oauth_microservice_client_secret:
+    file: ./secrets/dev_oauth_microservice_client_secret.txt

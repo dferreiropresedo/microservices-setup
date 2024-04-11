@@ -3,11 +3,19 @@ server:
   servlet:
     context-path: /producer
 
+micro-producer:
+  secrets:
+    microservice-client:
+      client-secret: ${DEV_OAUTH_MICROSERVICE-CLIENT}
+  keycloak:
+    host: localhost:9080
+    realm: microservices_realm
+
 spring:
   security:
     oauth2:
       resourceserver:
         opaque-token:
-          introspection-uri: http://localhost:9080/realms/microservices_realm/protocol/openid-connect/token/introspect
+          introspection-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/token/introspect
           client-id: microservice-client
-          client-secret: vMYyc76blsngzvYcu38LmE42giNs2ZJs
+          client-secret: ${micro-producer.secrets.microservice-client.client-secret}
