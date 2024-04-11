@@ -6,3 +6,5 @@ networks:
 secrets:
   dev_oauth_microservice_client_secret:
     file: ./secrets/dev_oauth_microservice_client_secret.txt
+  dev_github_pass:
+    file: ./secrets/dev_github_pass.txt

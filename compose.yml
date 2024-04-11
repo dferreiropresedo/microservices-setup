@@ -5,6 +5,26 @@ include:
   - ./docker/keycloak.yml
 
 services:
+  config-server:
+    build:
+      context: ./microservices
+      dockerfile: config-server/Dockerfile
+    image: config-server:latest
+    hostname: config-server
+    container_name: config-server
+    ports:
+      - "9081:9081"
+    healthcheck:
+      test: "curl --fail --silent localhost:9081/configserver/actuator/health | grep UP || exit 1"
+      interval: 2s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
+    environment:
+      - DEV_GITHUB_PASS=/run/secrets/dev_github_pass.txt
+    networks:
+      - learning
+
   producer-micro:
     build:
       context: ./microservices

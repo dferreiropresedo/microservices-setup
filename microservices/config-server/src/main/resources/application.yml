@@ -1,0 +1,23 @@
+server:
+  port: 9081
+  servlet:
+    context-path: /configserver
+
+config-server:
+  secrets:
+    git-password: ${DEV_GITHUB_PASS}
+
+spring:
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      server:
+        git:
+          username: dferreiropresedo
+          password: ${config-server.secrets.git-password}
+          repos:
+            producer:
+              pattern: producer
+              uri: https://github.com/dferreiropresedo/microservices-setup/configbase/producer

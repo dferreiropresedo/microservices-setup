@@ -10,11 +10,14 @@ micro-producer:
   keycloak:
     host: localhost:9080
     realm: microservices_realm
+  test-property: from-application
 
 spring:
+  application:
+    name: producer
   security:
     oauth2:
-      resourceserver:
+      resource-server:
         opaque-token:
           introspection-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/token/introspect
           client-id: microservice-client
