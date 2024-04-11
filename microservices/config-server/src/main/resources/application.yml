@@ -8,15 +8,14 @@ config-server:
     git-password: ${DEV_GITHUB_PASS}
 
 spring:
-  profiles:
-    active: native
-
   cloud:
     config:
       server:
         git:
+          uri: https://github.com/dferreiropresedo/microservices-setup/configbase
           username: dferreiropresedo
           password: ${config-server.secrets.git-password}
+          defaultLabel: main
           repos:
             producer:
               pattern: producer
