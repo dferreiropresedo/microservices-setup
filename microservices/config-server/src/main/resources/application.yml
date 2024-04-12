@@ -3,6 +3,12 @@ server:
   servlet:
     context-path: /configserver
 
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.cloud.config: DEBUG
+
+
 config-server:
   secrets:
     git-password: ${DEV_GITHUB_PASS}
@@ -12,11 +18,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/dferreiropresedo/microservices-setup/configbase
+          uri: https://github.com/dferreiropresedo/microservices-setup
           username: dferreiropresedo
           password: ${config-server.secrets.git-password}
           defaultLabel: main
-          repos:
-            producer:
-              pattern: producer
-              uri: https://github.com/dferreiropresedo/microservices-setup/configbase/producer
+          search-paths:
+            - 'configbase/{application}'

@@ -22,6 +22,8 @@ services:
       start_period: 3s
     environment:
       - DEV_GITHUB_PASS=/run/secrets/dev_github_pass.txt
+    secrets:
+      - dev_github_pass
     networks:
       - learning
 
@@ -34,6 +36,8 @@ services:
     container_name: producer-micro
     ports:
       - "8080:8080"
+    depends_on:
+      - config-server
     healthcheck:
       test: "curl --fail --silent localhost:8080/producer/actuator/health | grep UP || exit 1"
       interval: 2s
@@ -43,6 +47,7 @@ services:
     environment:
       - DEV_OAUTH_MICROSERVICE-CLIENT=/run/secrets/dev_oauth_microservice_client_secret
       - MICRO-PRODUCER_KEYCLOAK_HOST=keycloak:8080
+      - SPRING_CLOUD_CONFIG_HOST=config-server:9081/configserver
     secrets:
       - dev_oauth_microservice_client_secret
     networks:

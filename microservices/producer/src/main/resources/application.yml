@@ -1,24 +1,14 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /producer
-
-micro-producer:
-  secrets:
-    microservice-client:
-      client-secret: ${DEV_OAUTH_MICROSERVICE-CLIENT}
-  keycloak:
-    host: localhost:9080
-    realm: microservices_realm
-  test-property: from-application
-
 spring:
   application:
     name: producer
-  security:
-    oauth2:
-      resource-server:
-        opaque-token:
-          introspection-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/token/introspect
-          client-id: microservice-client
-          client-secret: ${micro-producer.secrets.microservice-client.client-secret}
+  #    profiles:
+  #      active: local
+  config:
+    import: optional:configserver:http://${spring.cloud.config.host}
+  cloud:
+    config:
+      enabled: true
+      host: localhost:9081/configserver
+      name: producer
+      profile: config,config_dev
+      label: feature(_)spring-config-server
