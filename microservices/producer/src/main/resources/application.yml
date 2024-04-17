@@ -1,10 +1,38 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /producer
+
+
+micro-producer:
+  secrets:
+    microservice-client:
+      client-secret: ${DEV_OAUTH_MICROSERVICE-CLIENT}
+  keycloak:
+    host: localhost:9080
+    realm: microservices_realm
+  property: local-value
+
+
 spring:
   application:
     name: producer
-  #    profiles:
-  #      active: local
   config:
-    import: optional:configserver:http://${spring.cloud.config.host}
+    import: optional:configserver:http://${spring.cloud.config.host},optional:configtree:/run/secrets/
+
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/certs
+
+  # This mode is only available on local, on docker containers it raises an error due to how the token is generated
+  #
+  #        opaque-token:
+  #          introspection-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/token/introspect
+  #          client-id: microservice-client
+  #          client-secret: ${micro-producer.secrets.microservice-client.client-secret}
+
   cloud:
     config:
       enabled: true
