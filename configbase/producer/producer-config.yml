@@ -1,8 +1,3 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /producer
-
 micro-producer:
   secrets:
     microservice-client:
@@ -11,15 +6,3 @@ micro-producer:
     host: localhost:9080
     realm: microservices_realm
   property: generic-value
-
-
-spring:
-  application:
-    name: producer
-  security:
-    oauth2:
-      resource-server:
-        opaque-token:
-          introspection-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/token/introspect
-          client-id: microservice-client
-          client-secret: ${micro-producer.secrets.microservice-client.client-secret}

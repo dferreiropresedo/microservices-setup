@@ -5,4 +5,4 @@ micro-producer:
   keycloak:
     host: localhost:9080
     realm: microservices_realm
-  property: local-value
+  property: docker-value

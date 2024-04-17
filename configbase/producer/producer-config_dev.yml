@@ -1,2 +1,8 @@
 micro-producer:
-  property: dev value
+  secrets:
+    microservice-client:
+      client-secret: ${DEV_OAUTH_MICROSERVICE-CLIENT}
+  keycloak:
+    host: localhost:9080
+    realm: microservices_realm
+  property: dev-value

@@ -5,6 +5,12 @@ include:
   - ./docker/keycloak.yml
 
 services:
+  common-image:
+    build:
+      context: ./microservices
+      dockerfile: Dockerfile
+    image: microservices-setup:latest
+
   config-server:
     build:
       context: ./microservices
@@ -14,6 +20,9 @@ services:
     container_name: config-server
     ports:
       - "9081:9081"
+    depends_on:
+      common-image:
+        condition: service_completed_successfully
     healthcheck:
       test: "curl --fail --silent localhost:9081/configserver/actuator/health | grep UP || exit 1"
       interval: 2s
@@ -36,6 +45,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
+      common-image:
+        condition: service_completed_successfully
       config-server:
         condition: service_healthy
     healthcheck:
