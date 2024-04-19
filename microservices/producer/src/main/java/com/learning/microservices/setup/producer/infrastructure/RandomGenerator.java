@@ -9,11 +9,17 @@ public class RandomGenerator {
       "accumsan", "fringilla.", "Phasellus", "vestibulum", "congue", "interdum.", "Morbi",
       "volutpat", "tortor", "eu", "arcu", "faucibus,", "et", "sagittis", "sapien."};
 
+  private static final Long[] USER_IDS = new Long[]{10L, 23434L, 666L, 9087L, 5L};
+
+  public static Long userId() {
+    return USER_IDS[new Random().nextInt(0, USER_IDS.length)];
+  }
+
   public static String sentence(String... extraWords) {
     String[] dictionary = buildDictionary(extraWords);
     int numberOfWords = new Random().nextInt(1, 40);
     StringBuilder builder = new StringBuilder(numberOfWords);
-    
+
     for (int i = 0; i < numberOfWords; i++) {
       int position = new Random().nextInt(0, dictionary.length);
       builder.append(dictionary[position]);

@@ -11,6 +11,11 @@ micro-producer:
   keycloak:
     host: localhost:9080
     realm: microservices_realm
+  random:
+    keys:
+      - "Kafka"
+      - "diaavlo"
+      - "no fuimo"
   property: default-value
 
 
@@ -25,7 +30,6 @@ spring:
       resource-server:
         jwt:
           jwk-set-uri: http://${micro-producer.keycloak.host:-localhost:9080}/realms/${micro-producer.keycloak.realm}/protocol/openid-connect/certs
-
   # This mode is only available on local, on docker containers it raises an error due to how the token is generated
   #
   #        opaque-token:
@@ -35,9 +39,22 @@ spring:
 
   cloud:
     config:
-      enabled: true
+      enabled: false
       host: localhost:9081/configserver
       name: producer
       profile: config
-# This property allows us to establish a branch inside the git repository to check out the configuration
-#      label: feature(_)spring-config-server
+    # This property allows us to establish a branch inside the git repository to check out the configuration
+    #      label: feature(_)spring-config-server
+    stream:
+      bindings:
+        my-message-producer-out-0:
+          producer:
+            poller:
+              fixed-delay: 5000
+          destination: learning.stoopid-topic
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
+            - localhost:9094
+            - localhost:9096
