@@ -20,6 +20,7 @@
   <modules>
     <module>producer</module>
     <module>config-server</module>
+    <module>consumer</module>
   </modules>
 
   <properties>

@@ -55,6 +55,6 @@ spring:
       kafka:
         binder:
           brokers:
-            - localhost:9092
             - localhost:9094
+            - localhost:9095
             - localhost:9096
