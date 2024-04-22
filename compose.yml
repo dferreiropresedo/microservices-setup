@@ -29,7 +29,7 @@ services:
       interval: 2s
       timeout: 3s
       retries: 5
-      start_period: 3s
+      start_period: 12s
     secrets:
       - source: dev_github_pass
         target: DEV_GITHUB_PASS
@@ -48,8 +48,16 @@ services:
     depends_on:
       common-image:
         condition: service_completed_successfully
+      kafka-0:
+        condition: service_started
+      kafka-1:
+        condition: service_started
+      kafka-2:
+        condition: service_started
+    environment:
+      - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-0:9092,kafka-1:9092,kafka-2:9092
     healthcheck:
-      test: "curl --fail --silent localhost:8080/consumer/actuator/health | grep UP || exit 1"
+      test: "curl --fail --silent localhost:8081/consumer/actuator/health | grep UP || exit 1"
       interval: 2s
       timeout: 3s
       retries: 5
@@ -86,6 +94,7 @@ services:
     environment:
       - MICRO-PRODUCER_KEYCLOAK_HOST=keycloak:8080
       - SPRING_CLOUD_CONFIG_HOST=config-server:9081/configserver
+      - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-0:9092,kafka-1:9092,kafka-2:9092
     secrets:
       - source: dev_oauth_microservice_client_secret
         target: DEV_OAUTH_MICROSERVICE-CLIENT
