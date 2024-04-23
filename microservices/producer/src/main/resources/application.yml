@@ -49,11 +49,17 @@ spring:
       bindings:
         my-message-producer-out-0:
           producer:
+            useNativeEncoding: true
             poller:
               fixed-delay: 5000
           destination: learning.stoopid-topic
       kafka:
         binder:
+          configuration:
+            key:
+              serializer: org.apache.kafka.common.serialization.LongSerializer
+            value:
+              serializer: org.apache.kafka.common.serialization.StringSerializer
           brokers:
             - localhost:9094
             - localhost:9095

@@ -25,6 +25,11 @@ spring:
           group: consumer-microservice
       kafka:
         binder:
+          configuration:
+            key:
+              deserializer: org.apache.kafka.common.serialization.LongDeserializer
+            value:
+              deserializer: org.apache.kafka.common.serialization.StringDeserializer
           brokers:
             - localhost:9094
             - localhost:9095

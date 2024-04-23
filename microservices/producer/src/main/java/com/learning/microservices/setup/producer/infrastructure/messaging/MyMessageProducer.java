@@ -8,23 +8,29 @@ import java.time.Instant;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
 @Component("my-message-producer")
 @Slf4j
 @RequiredArgsConstructor
-public class MyMessageProducer implements Supplier<String> {
+public class MyMessageProducer implements Supplier<Message<String>> {
 
   private final RandomGeneratorConfiguration randomGeneratorConfiguration;
 
 
   @Override
-  public String get() {
+  public Message<String> get() {
     MyMessage myMessage = MyMessage.builder().userId(RandomGenerator.userId())
         .message(RandomGenerator.sentence(randomGeneratorConfiguration.getKeys()))
         .createdAt(Instant.now(Clock.systemUTC()).toEpochMilli())
         .build();
-    log.info("Sending the message: {}", myMessage);
-    return myMessage.toString();
+    Message<String> message = MessageBuilder.withPayload(myMessage.toString())
+        .setHeader(KafkaHeaders.KEY, myMessage.getUserId())
+        .build();
+    log.info("Sending the message: {}", message);
+    return message;
   }
 }
