@@ -53,13 +53,14 @@ spring:
             poller:
               fixed-delay: 5000
           destination: learning.stoopid-topic
+          content-type: application/*+avro
       kafka:
         binder:
           configuration:
             key:
               serializer: org.apache.kafka.common.serialization.LongSerializer
             value:
-              serializer: org.apache.kafka.common.serialization.StringSerializer
+              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
           brokers:
             - localhost:9094
             - localhost:9095

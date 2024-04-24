@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "namespace": "com.learning.microservices.avro",
+  "name": "MyAvroMessage",
+  "fields": [
+    {
+      "name": "userId",
+      "type": "long"
+    },
+    {
+      "name": "message",
+      "type": "string"
+    },
+    {
+      "name": "createdAt",
+      "type": "long"
+    }
+  ]
+}

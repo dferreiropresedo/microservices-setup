@@ -23,13 +23,14 @@ spring:
             instanceCount: 3
           destination: learning.stoopid-topic
           group: consumer-microservice
+          content-type: application/*+avro
       kafka:
         binder:
           configuration:
             key:
               deserializer: org.apache.kafka.common.serialization.LongDeserializer
             value:
-              deserializer: org.apache.kafka.common.serialization.StringDeserializer
+              deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
           brokers:
             - localhost:9094
             - localhost:9095

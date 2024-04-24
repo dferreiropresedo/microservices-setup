@@ -1,5 +1,6 @@
 package com.learning.microservices.setup.producer.infrastructure.messaging;
 
+import com.learning.microservices.avro.MyAvroMessage;
 import com.learning.microservices.setup.producer.config.beans.RandomGeneratorConfiguration;
 import com.learning.microservices.setup.producer.domain.MyMessage;
 import com.learning.microservices.setup.producer.infrastructure.RandomGenerator;
@@ -16,21 +17,25 @@ import org.springframework.stereotype.Component;
 @Component("my-message-producer")
 @Slf4j
 @RequiredArgsConstructor
-public class MyMessageProducer implements Supplier<Message<String>> {
+public class MyMessageProducer implements Supplier<Message<MyAvroMessage>> {
 
   private final RandomGeneratorConfiguration randomGeneratorConfiguration;
 
 
   @Override
-  public Message<String> get() {
+  public Message<MyAvroMessage> get() {
     MyMessage myMessage = MyMessage.builder().userId(RandomGenerator.userId())
         .message(RandomGenerator.sentence(randomGeneratorConfiguration.getKeys()))
         .createdAt(Instant.now(Clock.systemUTC()).toEpochMilli())
         .build();
-    Message<String> message = MessageBuilder.withPayload(myMessage.toString())
-        .setHeader(KafkaHeaders.KEY, myMessage.getUserId())
+    MyAvroMessage content = MyAvroMessage.newBuilder().setUserId(myMessage.getUserId())
+        .setMessage(myMessage.getMessage()).setCreatedAt(myMessage.getCreatedAt()).build();
+    
+    Message<MyAvroMessage> envelope = MessageBuilder.withPayload(content)
+        .setHeader(KafkaHeaders.KEY, content.getUserId())
         .build();
-    log.info("Sending the message: {}", message);
-    return message;
+
+    log.info("Sending the envelope: {}", envelope);
+    return envelope;
   }
 }

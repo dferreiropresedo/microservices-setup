@@ -48,6 +48,8 @@ services:
     depends_on:
       common-image:
         condition: service_completed_successfully
+      schema-registry:
+        condition: service_started
       kafka-0:
         condition: service_started
       kafka-1:
@@ -79,6 +81,8 @@ services:
         condition: service_completed_successfully
       config-server:
         condition: service_healthy
+      schema-registry:
+        condition: service_started
       kafka-0:
         condition: service_started
       kafka-1:

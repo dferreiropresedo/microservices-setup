@@ -6,6 +6,7 @@ kafka:
     name: microservices-setup
     properties: {}
     readOnly: false
+    schemaRegistry: http://schema-registry:9091
 rbac:
   roles: []
 webclient: {}
