@@ -58,9 +58,10 @@ spring:
         binder:
           configuration:
             key:
-              serializer: org.apache.kafka.common.serialization.LongSerializer
+              serializer: org.apache.kafka.common.serialization.StringSerializer
             value:
               serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            schema.registry.url: http://localhost:9091
           brokers:
             - localhost:9094
             - localhost:9095

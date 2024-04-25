@@ -30,9 +30,9 @@ public class MyMessageProducer implements Supplier<Message<MyAvroMessage>> {
         .build();
     MyAvroMessage content = MyAvroMessage.newBuilder().setUserId(myMessage.getUserId())
         .setMessage(myMessage.getMessage()).setCreatedAt(myMessage.getCreatedAt()).build();
-    
+
     Message<MyAvroMessage> envelope = MessageBuilder.withPayload(content)
-        .setHeader(KafkaHeaders.KEY, content.getUserId())
+        .setHeader(KafkaHeaders.KEY, String.valueOf(content.getUserId()))
         .build();
 
     log.info("Sending the envelope: {}", envelope);

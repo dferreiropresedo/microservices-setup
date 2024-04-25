@@ -19,8 +19,8 @@ spring:
       bindings:
         my-message-consumer-in-0:
           consumer:
+            useNativeEncoding: true
             startOffset: latest
-            instanceCount: 3
           destination: learning.stoopid-topic
           group: consumer-microservice
           content-type: application/*+avro
@@ -28,9 +28,10 @@ spring:
         binder:
           configuration:
             key:
-              deserializer: org.apache.kafka.common.serialization.LongDeserializer
+              deserializer: org.apache.kafka.common.serialization.StringDeserializer
             value:
               deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            schema.registry.url: http://localhost:9091
           brokers:
             - localhost:9094
             - localhost:9095

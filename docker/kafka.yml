@@ -28,7 +28,7 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka-0:9092,kafka-1:9092,kafka-2:9092'
-      SCHEMA_REGISTRY_LISTENERS: 'http://0.0.0.0:9091'
+      SCHEMA_REGISTRY_LISTENERS: http://schema-registry:9091
     depends_on:
       kafka-0:
         condition: service_healthy
@@ -37,7 +37,7 @@ services:
       kafka-2:
         condition: service_healthy
     healthcheck:
-      test: "curl --fail --silent -I localhost:9091 | grep '200 OK' || exit 1"
+      test: "curl --fail --silent -I schema-registry:9091 | grep '200 OK' || exit 1"
       interval: 2s
       timeout: 3s
       retries: 5
