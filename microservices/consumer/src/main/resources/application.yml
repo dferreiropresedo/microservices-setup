@@ -4,6 +4,8 @@ server:
     context-path: /consumer
 
 spring:
+  profiles:
+    active: local
   application:
     name: consumer
   config:

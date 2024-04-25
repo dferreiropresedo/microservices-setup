@@ -16,10 +16,12 @@ micro-producer:
       - "Kafka"
       - "diaavlo"
       - "no fuimo"
-  property: default-value
+  property: generic value
 
 
 spring:
+  profiles:
+    active: local
   application:
     name: producer
   config:

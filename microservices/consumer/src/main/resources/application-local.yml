@@ -1,8 +1,3 @@
-micro-producer:
-  keycloak:
-    host: localhost:9080
-  property: local-value
-
 spring:
   config:
     import: optional:configserver:http://${spring.cloud.config.host}
@@ -11,7 +6,6 @@ spring:
     config:
       host: localhost:9081/configserver
     stream:
-      bindings:
       kafka:
         binder:
           configuration:
