@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.51.2
+    container_name: prometheus
+    hostname: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9070:9090"
+    volumes:
+      - ./cfg/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    networks:
+      - learning
+
+  zipkin:
+    image: openzipkin/zipkin:3
+    container_name: zipkin
+    hostname: zipkin
+    ports:
+      - "9071:9411"
+    networks:
+      - learning
+
+
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    profiles:
+      - donotstart
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+    networks:
+      - learning

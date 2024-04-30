@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component("my-message-producer")
 @Slf4j
 @RequiredArgsConstructor
+@ConditionalOnProperty(value = "tools.kafka.enabled", havingValue = "true")
 public class MyMessageProducer implements Supplier<Message<MyAvroMessage>> {
 
   private final RandomGeneratorConfiguration randomGeneratorConfiguration;

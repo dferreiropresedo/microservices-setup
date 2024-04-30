@@ -15,7 +15,7 @@ services:
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
     volumes:
-      - ./kafka-dynamic-conf.yml:/etc/kafkaui/dynamic_config.yaml
+      - ./cfg/kafka-dynamic-conf.yml:/etc/kafkaui/dynamic_config.yaml
     networks:
       - learning
 

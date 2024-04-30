@@ -36,6 +36,7 @@
 
     <avro-plugin.version>1.11.3</avro-plugin.version>
     <avro-serializer.version>7.6.0</avro-serializer.version>
+    <micrometer-prometheus.version>1.12.5</micrometer-prometheus.version>
   </properties>
 
   <dependencyManagement>
@@ -62,6 +63,11 @@
         <groupId>io.confluent</groupId>
         <artifactId>kafka-avro-serializer</artifactId>
         <version>${avro-serializer.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+        <version>${micrometer-prometheus.version}</version>
       </dependency>
 
     </dependencies>

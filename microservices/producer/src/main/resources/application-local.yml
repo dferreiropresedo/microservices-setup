@@ -3,15 +3,20 @@ micro-producer:
     host: localhost:9080
   property: local-value
 
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9071/api/v2/spans
+
 spring:
   config:
     import: optional:configserver:http://${spring.cloud.config.host}
-
+  zipkin:
+    base-url: http://zipkin:9411/
   cloud:
     config:
       host: localhost:9081/configserver
     stream:
-      bindings:
       kafka:
         binder:
           configuration:

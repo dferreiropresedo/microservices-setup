@@ -17,6 +17,7 @@ public class HelloWorldController {
 
   @GetMapping("/hello-world")
   public ResponseEntity<String> helloWorld() {
+    log.info("Zipkin works!");
     return ResponseEntity.ok(String.format("Hello %s world!", configServer));
   }
 
