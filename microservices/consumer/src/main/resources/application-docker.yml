@@ -1,7 +1,15 @@
+micro-producer:
+  loki:
+    endpoint: http://loki:3100/loki/api/v1/push
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+
 spring:
   config:
     import: optional:configserver:http://${spring.cloud.config.host},optional:configtree:/run/secrets/
-
   cloud:
     config:
       host: config-server:9081/configserver

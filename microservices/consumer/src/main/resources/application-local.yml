@@ -1,3 +1,12 @@
+micro-consumer:
+  loki:
+    endpoint: http://localhost:9073/loki/api/v1/push
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9071/api/v2/spans
+
 spring:
   config:
     import: optional:configserver:http://${spring.cloud.config.host}
