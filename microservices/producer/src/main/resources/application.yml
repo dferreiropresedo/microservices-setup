@@ -20,6 +20,8 @@ micro-producer:
   keycloak:
     host: localhost:9080
     realm: microservices_realm
+  loki:
+    endpoint: http://localhost:9073/loki/api/v1/push
   random:
     keys:
       - "Kafka"

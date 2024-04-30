@@ -24,18 +24,27 @@ services:
     networks:
       - learning
 
-
   grafana:
     image: grafana/grafana:10.4.2
     container_name: grafana
     ports:
-      - "3000:3000"
-    profiles:
-      - donotstart
+      - "9072:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - ./grafana:/etc/grafana/provisioning/datasources
+      - ./data/grafana:/var/lib/grafana
+    networks:
+      - learning
+
+  loki:
+    image: grafana/loki:3.0.0
+    container_name: loki
+    hostname: loki
+    ports:
+      - "9073:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./data/loki:/loki
     networks:
       - learning
