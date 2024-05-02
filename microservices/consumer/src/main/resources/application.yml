@@ -48,6 +48,7 @@ spring:
           content-type: application/*+avro
       kafka:
         binder:
+          enableObservation: true
           configuration:
             key:
               deserializer: org.apache.kafka.common.serialization.StringDeserializer

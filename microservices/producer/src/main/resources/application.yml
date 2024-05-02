@@ -77,11 +77,12 @@ spring:
           producer:
             useNativeEncoding: true
             poller:
-              fixed-delay: 5000
+              fixed-delay: 15000
           destination: learning.stoopid-topic
           content-type: application/*+avro
       kafka:
         binder:
+          enableObservation: true
           configuration:
             key:
               serializer: org.apache.kafka.common.serialization.StringSerializer

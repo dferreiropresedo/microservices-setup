@@ -23,6 +23,8 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/hello-world"))
                 .permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/hello-kafka"))
+                .permitAll()
                 .anyRequest()
                 .authenticated()
         );
