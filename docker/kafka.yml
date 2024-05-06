@@ -74,7 +74,7 @@ services:
       retries: 3
       start_period: 3s
     volumes:
-      - ./data/kafka/kafka0:/bitnami/kafka
+      - kafka0:/bitnami/kafka
     networks:
       - learning
 
@@ -107,7 +107,7 @@ services:
       retries: 3
       start_period: 3s
     volumes:
-      - ./data/kafka/kafka1:/bitnami/kafka
+      - kafka1:/bitnami/kafka
     networks:
       - learning
 
@@ -140,6 +140,11 @@ services:
       retries: 3
       start_period: 3s
     volumes:
-      - ./data/kafka/kafka2:/bitnami/kafka
+      - kafka2:/bitnami/kafka
     networks:
       - learning
+
+volumes:
+  kafka0: { }
+  kafka1: { }
+  kafka2: { }
