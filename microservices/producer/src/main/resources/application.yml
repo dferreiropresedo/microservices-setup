@@ -5,7 +5,7 @@ server:
 
 tools:
   kafka:
-    enabled: true
+    enabled: false
   oauth2:
     enabled: true
   observability:
@@ -80,16 +80,16 @@ spring:
               fixed-delay: 15000
           destination: learning.stoopid-topic
           content-type: application/*+avro
-      kafka:
-        binder:
-          enableObservation: true
-          configuration:
-            key:
-              serializer: org.apache.kafka.common.serialization.StringSerializer
-            value:
-              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-            schema.registry.url: http://localhost:9091
-          brokers:
-            - localhost:9094
-            - localhost:9095
-            - localhost:9096
+#      kafka:
+#        binder:
+#          enableObservation: true
+#          configuration:
+#            key:
+#              serializer: org.apache.kafka.common.serialization.StringSerializer
+#            value:
+#              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+#            schema.registry.url: http://localhost:9091
+#          brokers:
+#            - localhost:9094
+#            - localhost:9095
+#            - localhost:9096
