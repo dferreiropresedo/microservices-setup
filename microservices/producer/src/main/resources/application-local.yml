@@ -16,12 +16,3 @@ spring:
   cloud:
     config:
       host: localhost:9081/configserver
-#    stream:
-#      kafka:
-#        binder:
-#          configuration:
-#            schema.registry.url: http://localhost:9091
-#          brokers:
-#            - localhost:9094
-#            - localhost:9095
-#            - localhost:9096
