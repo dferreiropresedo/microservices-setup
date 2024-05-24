@@ -23,6 +23,7 @@
     <module>consumer</module>
     <module>dep-messaging</module>
     <module>dep-observability</module>
+    <module>int-common</module>
   </modules>
 
   <properties>
@@ -52,6 +53,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>dep-observability</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>int-common</artifactId>
         <version>${project.version}</version>
       </dependency>
 
