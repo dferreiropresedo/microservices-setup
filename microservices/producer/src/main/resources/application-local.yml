@@ -1,14 +1,7 @@
 micro-producer:
   keycloak:
     host: localhost:9080
-  loki:
-    endpoint: http://localhost:9073/loki/api/v1/push
   property: local-value
-
-management:
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9071/api/v2/spans
 
 spring:
   config:

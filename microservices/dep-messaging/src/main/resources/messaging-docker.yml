@@ -8,11 +8,6 @@ spring:
             - kafka-1:9092
             - kafka-2:9092
           configuration:
-            key:
-              serializer: org.apache.kafka.common.serialization.StringSerializer
             schema:
               registry:
                 url: http://schema-registry:9091
-            value:
-              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-          enableObservation: true

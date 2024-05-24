@@ -8,11 +8,6 @@ spring:
             - localhost:9095
             - localhost:9096
           configuration:
-            key:
-              serializer: org.apache.kafka.common.serialization.StringSerializer
             schema:
               registry:
                 url: http://localhost:9091
-            value:
-              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-          enableObservation: true

@@ -1,0 +1,19 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info,loggers,metrics
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9071/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1
+  observations:
+    enable:
+      spring:
+        security: false
+
+dep-observability:
+  loki:
+    endpoint: http://localhost:9073/loki/api/v1/push

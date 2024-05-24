@@ -20,8 +20,6 @@ micro-producer:
   keycloak:
     host: localhost:9080
     realm: microservices_realm
-  loki:
-    endpoint: http://localhost:9073/loki/api/v1/push
   random:
     keys:
       - "Kafka"
@@ -29,21 +27,6 @@ micro-producer:
       - "no fuimo"
   property: generic value
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus,health,info,loggers,metrics
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9071/api/v2/spans
-  tracing:
-    sampling:
-      probability: 1
-  observations:
-    enable:
-      spring:
-        security: false
 
 spring:
   profiles:
@@ -80,16 +63,3 @@ spring:
               fixed-delay: 15000
           destination: learning.stoopid-topic
           content-type: application/*+avro
-#      kafka:
-#        binder:
-#          enableObservation: true
-#          configuration:
-#            key:
-#              serializer: org.apache.kafka.common.serialization.StringSerializer
-#            value:
-#              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-#            schema.registry.url: http://localhost:9091
-#          brokers:
-#            - localhost:9094
-#            - localhost:9095
-#            - localhost:9096
