@@ -1,11 +1,7 @@
 micro-producer:
-  keycloak:
-    host: localhost:9080
   property: local-value
 
 spring:
-  config:
-    import: optional:configserver:http://${spring.cloud.config.host}
   cloud:
     config:
       host: localhost:9081/configserver

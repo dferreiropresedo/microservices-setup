@@ -1,6 +1,4 @@
 micro-producer:
-  keycloak:
-    host: keycloak:8080
   property: docker value
 
 spring:
