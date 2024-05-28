@@ -11,7 +11,7 @@ services:
       - "9070:9090"
     volumes:
       - ./cfg/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./data/prometheus:/prometheus
+      - prometheus:/prometheus
     networks:
       - learning
 
@@ -33,7 +33,7 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - ./data/grafana:/var/lib/grafana
+      - grafana:/var/lib/grafana
     networks:
       - learning
 
@@ -45,6 +45,11 @@ services:
       - "9073:3100"
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
-      - ./data/loki:/loki
+      - loki:/loki
     networks:
       - learning
+
+volumes:
+  loki: { }
+  grafana: { }
+  prometheus: { }
