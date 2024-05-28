@@ -1,0 +1,3 @@
+dep-auth:
+  keycloak:
+    host: localhost:9080

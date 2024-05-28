@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor=com.learning.microservices.dep.auth.DepAuthYamlLoader
