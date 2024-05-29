@@ -25,6 +25,7 @@
     <module>dep-observability</module>
     <module>int-common</module>
     <module>dep-auth</module>
+    <module>int-mymessage</module>
   </modules>
 
   <properties>
@@ -49,6 +50,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>int-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>int-mymessage</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
