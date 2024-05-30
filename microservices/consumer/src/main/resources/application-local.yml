@@ -1,25 +1,4 @@
-micro-consumer:
-  loki:
-    endpoint: http://localhost:9073/loki/api/v1/push
-
-management:
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9071/api/v2/spans
-
 spring:
-  config:
-    import: optional:configserver:http://${spring.cloud.config.host}
-
   cloud:
     config:
       host: localhost:9081/configserver
-    stream:
-      kafka:
-        binder:
-          configuration:
-            schema.registry.url: http://localhost:9091
-          brokers:
-            - localhost:9094
-            - localhost:9095
-            - localhost:9096

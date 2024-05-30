@@ -1,0 +1,3 @@
+dep-auth:
+  keycloak:
+    host: keycloak:8080

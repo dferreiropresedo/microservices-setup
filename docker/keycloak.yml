@@ -24,7 +24,7 @@ services:
     container_name: keycloak
     hostname: keycloak
     volumes:
-      - ./data/keycloak:/opt/keycloak/data/
+      - keycloak_data:/opt/keycloak/data/
     ports:
       - "9080:8080"
     command:
@@ -51,4 +51,5 @@ services:
       - learning
 
 volumes:
-  postgres_data:
+  postgres_data: { }
+  keycloak_data: { }

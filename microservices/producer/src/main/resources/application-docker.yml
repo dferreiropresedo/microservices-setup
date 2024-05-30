@@ -1,14 +1,5 @@
 micro-producer:
-  keycloak:
-    host: keycloak:8080
-  loki:
-    endpoint: http://loki:3100/loki/api/v1/push
   property: docker value
-
-management:
-  zipkin:
-    tracing:
-      endpoint: http://zipkin:9411/api/v2/spans
 
 spring:
   config:
@@ -16,12 +7,3 @@ spring:
   cloud:
     config:
       host: config-server:9081/configserver
-    stream:
-      kafka:
-        binder:
-          configuration:
-            schema.registry.url: http://schema-registry:9091
-          brokers:
-            - kafka-0:9092
-            - kafka-1:9092
-            - kafka-2:9092

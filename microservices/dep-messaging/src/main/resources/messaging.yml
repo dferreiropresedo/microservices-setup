@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+        enableObservation: true
+        binder:
+          brokers:
+            - localhost:9094
+            - localhost:9095
+            - localhost:9096
+          configuration:
+            key:
+              serializer: org.apache.kafka.common.serialization.StringSerializer
+              deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value:
+              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+              deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            schema:
+              registry:
+                url: http://localhost:9091
+          enableObservation: true

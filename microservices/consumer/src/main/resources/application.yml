@@ -3,25 +3,15 @@ server:
   servlet:
     context-path: /consumer
 
-micro-consumer:
-  loki:
-    endpoint: http://localhost:9073/loki/api/v1/push
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus,health,info,loggers,metrics
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9071/api/v2/spans
-  tracing:
-    sampling:
-      probability: 1
-  observations:
-    enable:
-      spring:
-        security: false
+tools:
+  kafka:
+    enabled: true
+  oauth2:
+    enabled: true
+  observability:
+    enabled: true
+  config-server:
+    enabled: true
 
 spring:
   profiles:
@@ -29,14 +19,14 @@ spring:
   application:
     name: consumer
   config:
-    import: optional:configserver:http://${spring.cloud.config.host},optional:configtree:/run/secrets/
+    import: optional:configserver:http://${spring.cloud.config.host}
 
   cloud:
     config:
       enabled: false
-      host: localhost:9081/configserver
-      name: consumer
-      profile: config
+    #      host: localhost:9081/configserver
+    #      name: consumer
+    #      profile: config
     stream:
       bindings:
         my-message-consumer-in-0:
@@ -46,16 +36,3 @@ spring:
           destination: learning.stoopid-topic
           group: consumer-microservice
           content-type: application/*+avro
-      kafka:
-        binder:
-          enableObservation: true
-          configuration:
-            key:
-              deserializer: org.apache.kafka.common.serialization.StringDeserializer
-            value:
-              deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-            schema.registry.url: http://localhost:9091
-          brokers:
-            - localhost:9094
-            - localhost:9095
-            - localhost:9096

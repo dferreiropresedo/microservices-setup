@@ -13,6 +13,19 @@
 
   <dependencies>
     <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>int-mymessage</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>dep-messaging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>dep-observability</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
@@ -28,44 +41,12 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-config</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-stream-kafka</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro-compiler</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro-maven-plugin</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.confluent</groupId>
-      <artifactId>kafka-avro-serializer</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-tracing-bridge-brave</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.zipkin.reporter2</groupId>
-      <artifactId>zipkin-reporter-brave</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.github.loki4j</groupId>
-      <artifactId>loki-logback-appender</artifactId>
     </dependency>
 
     <dependency>
@@ -89,26 +70,6 @@
             </exclude>
           </excludes>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.avro</groupId>
-        <artifactId>avro-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>schemas</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>schema</goal>
-              <goal>protocol</goal>
-              <goal>idl-protocol</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
-              <outputDirectory>${project.build.directory}/generated-sources/avro</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
