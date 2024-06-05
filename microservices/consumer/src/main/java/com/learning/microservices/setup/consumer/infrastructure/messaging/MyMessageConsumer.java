@@ -3,10 +3,12 @@ package com.learning.microservices.setup.consumer.infrastructure.messaging;
 import com.learning.microservices.avro.MyAvroMessage;
 import java.util.function.Consumer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 @Component("my-message-consumer")
+@ConditionalOnProperty(value = "tools.kafka.enabled", havingValue = "true")
 @Slf4j
 public class MyMessageConsumer implements Consumer<Message<MyAvroMessage>> {
 
