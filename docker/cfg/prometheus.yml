@@ -19,4 +19,4 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets:
-          - IMATIA23041:8080
+          - localhost:8080

@@ -15,7 +15,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>parent</name>
+  <name>microservices-setup</name>
   <description>Parent pom to manage the dependencies of the project</description>
   <modules>
     <module>producer</module>

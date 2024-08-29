@@ -29,6 +29,8 @@ spring:
     name: producer
   config:
     import: optional:configserver:http://${spring.cloud.config.host}
+  jpa:
+    open-in-view: false
   cloud:
     config:
       enabled: false
