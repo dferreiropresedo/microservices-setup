@@ -1,21 +1,29 @@
 spring:
   cloud:
     stream:
+      default:
+        content-type: application/*+avro
       kafka:
+        default:
+          consumer:
+            start-offset: latest
         enableObservation: true
         binder:
           brokers:
             - localhost:9094
             - localhost:9095
             - localhost:9096
+          autoCreateTopics: false
+          enableObservation: true
+          consumer-properties:
+            specific.avro.reader: true
+            spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+            spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
           configuration:
             key:
-              serializer: org.apache.kafka.common.serialization.StringSerializer
-              deserializer: org.apache.kafka.common.serialization.StringDeserializer
+              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+              deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
             value:
               serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-              deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-            schema:
-              registry:
-                url: http://localhost:9091
-          enableObservation: true
+              deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            schema.registry.url: http://localhost:9091
